@@ -166,7 +166,7 @@ function Player(name, health, strength, speed){
   }
  }
 
-}
+
 
 /**
  * Player Class Method => discardItem(item)
@@ -193,6 +193,18 @@ function Player(name, health, strength, speed){
  * @param {Item/Weapon/Food} item   The item to discard.
  * @return {boolean} true/false     Whether player was able to remove item from pack.
  */
+
+ this.discardItem = function(item){
+  var location = this.getPack().indexOf(item);
+  if(location >= 0){
+    this.getPack().splice(location,1);
+    console.log(this.name, item.name);
+    return true;
+  }else{
+    console.log('nothing was discarded since the item could not be found.');
+    return false;
+  }
+ }
 
 
 /**
@@ -265,6 +277,12 @@ function Player(name, health, strength, speed){
  */
 
 
+
+
+
+
+
+}
 /**
  * Class => Zombie(health, strength, speed)
  * -----------------------------
