@@ -7,9 +7,6 @@
  * @param {string} name     The item's name.
  * @property {string} name
  */
-function Item(name){
-  this.name = name;
-}
 
 /**
  * Class => Weapon(name, damage)
@@ -26,23 +23,11 @@ function Item(name){
  * @param {number} damage   The weapon's damage.
  * @property {number} damage
  */
-function Weapon(name, damage){
-  Item.call(this, name);
-  this.damage = damage;
-
-}
 
 /**
  * Weapon Extends Item Class
  * -----------------------------
  */
-
-
-Weapon.prototype = Object.create(Item.prototype,{
-  constructor :{
-    value : Item
-  }
-})
 
 /**
  * Class => Food(name, energy)
@@ -58,23 +43,11 @@ Weapon.prototype = Object.create(Item.prototype,{
  * @param {string} name       The food's name.
  * @param {number} energy     The energy the food provides.
  * @property {number} energy
- */
-
-function Food(name, energy){
-  Item.call(this, name);
-  this.energy = energy;
-}
-
-/**
+ *
+ /**
  * Food Extends Item Class
  * -----------------------------
  */
-
-Food.prototype = Object.create(Item.prototype,{
-  constructor : {
-    value : Item
-  }
-})
 
 /**
  * Class => Player(name, health, strength, speed)
@@ -97,28 +70,7 @@ Food.prototype = Object.create(Item.prototype,{
  * @property {method} getPack              Returns private variable `pack`.
  * @property {method} getMaxHealth         Returns private variable `maxHealth`.
  */
-
-function Player(name, health, strength, speed){
-  this.name = name;
-  this.health = health;
-  this.strength = strength;
-  this.speed = speed;
-  this._pack = [];
-  this._maxHealth = health;
-  this.isAlive = true;
-  this.equipped = false;
-  this.getPack = function(){
-    return this._pack;
-  };
-  this.getMaxHealth = function(){
-    return this._maxHealth;
-  };
-
-
-
-
-
-/**
+ /**
  * Player Class Method => checkPack()
  * -----------------------------
  * Player checks the contents of their pack.
@@ -130,10 +82,6 @@ function Player(name, health, strength, speed){
  * @name checkPack
  */
 
-  this.checkPack = function(){
-    console.log(Player.getPack);
-    return true;
-  }
 
 /**
  * Player Class Method => takeItem(item)
@@ -152,21 +100,6 @@ function Player(name, health, strength, speed){
  * @param {Item/Weapon/Food} item   The item to take.
  * @return {boolean} true/false     Whether player was able to store item in pack.
  */
-
- this.takeItem = function(item){
-  if(this.getPack().length < 3){
-    //add the item
-
-    console.log(this.name, item.name);
-    this.getPack().push(item);
-    return true;
-  }else{
-    console.log('the pack is full so the item could not be stored');
-    return false;
-  }
- }
-
-
 
 /**
  * Player Class Method => discardItem(item)
@@ -194,18 +127,6 @@ function Player(name, health, strength, speed){
  * @return {boolean} true/false     Whether player was able to remove item from pack.
  */
 
- this.discardItem = function(item){
-  var location = this.getPack().indexOf(item);
-  if(location >= 0){
-    this.getPack().splice(location,1);
-    console.log(this.name, item.name);
-    return true;
-  }else{
-    console.log('nothing was discarded since the item could not be found.');
-    return false;
-  }
- }
-
 
 /**
  * Player Class Method => equip(itemToEquip)
@@ -216,9 +137,13 @@ function Player(name, health, strength, speed){
  * Player can only equip weapon items from their pack.
  *
  * If the player already has a weapon equipped (the equipped property
- *   is set to an Item), find the itemToEquip in the pack and replace
- *   it with the currently equipped item.  Then set the equipped property
- *   to the itemToEquip.
+ *   is set to an Item),
+
+  find the itemToEquip in the pack and
+  replaceit with the currently equipped item.
+  Then set the equipped property to the itemToEquip.
+
+
  * However, if the player doesn't already have a weapon equipped, simply
  *   equip that item and remove it from the pack.
  * You should be able to invoke this function on a Player instance.
@@ -226,9 +151,7 @@ function Player(name, health, strength, speed){
  * @name equip
  * @param {Weapon} itemToEquip  The weapon item to equip.
  */
-
-
-/**
+ /**
  * Player Class Method => eat(itemToEat)
  * -----------------------------
  * Player eats a food item, restoring their health.
@@ -247,19 +170,107 @@ function Player(name, health, strength, speed){
  * @param {Food} itemToEat  The food item to eat.
  */
 
+function Item(name){
+  this.name = name;
+}
 
-/**
- * Player Class Method => useItem(item)
- * -----------------------------
- * Player uses an item from the pack.
- *
- * If the item is a weapon, the player should equip the item.
- * If the item is food, the player should eat the item.
- * You should be able to invoke this function on a Player instance.
- *
- * @name useItem
- * @param {Item/Weapon/Food} item   The item to use.
- */
+function Weapon(name, damage){
+  Item.call(this, name);
+  this.damage = damage;
+
+}
+
+Weapon.prototype = Object.create(Item.prototype,{
+  constructor :{
+    value : Item
+  }
+})
+
+function Food(name, energy){
+  Item.call(this, name);
+  this.energy = energy;
+}
+
+Food.prototype = Object.create(Item.prototype,{
+  constructor : {
+    value : Item
+  }
+})
+
+function Player(name, health, strength, speed){
+  this.name = name;
+  this.health = health;
+  this.strength = strength;
+  this.speed = speed;
+  this._pack = [];
+  this._maxHealth = health;
+  this.isAlive = true;
+  this.equipped = false;
+  this.getPack = function(){
+    return this._pack;
+  };
+  this.getMaxHealth = function(){
+    return this._maxHealth;
+  };
+  this.checkPack = function(){
+    console.log(Player.getPack);
+    return true;
+  }
+ this.takeItem = function(item){
+  if(this.getPack().length < 3){
+    console.log(this.name, item.name);
+    this.getPack().push(item);
+    return true;
+  }else{
+    console.log('the pack is full so the item could not be stored');
+    return false;
+    }
+   }
+ this.discardItem = function(item){
+  var location = this.getPack().indexOf(item);
+  if(location >= 0){
+    this.getPack().splice(location,1);
+    console.log(this.name, item.name);
+    return true;
+  }else{
+    console.log('nothing was discarded since the item could not be found.');
+    return false;
+    }
+  }
+  this.equip = function(itemToEquip){
+    if( (itemToEquip instanceof Weapon)   && (this.getPack().indexOf(itemToEquip) > -1)){
+      if(this.equipped === false){
+        this.equipped = itemToEquip;
+        this.discardItem(itemToEquip);
+        }else{
+          this.takeItem(this.equipped);
+          this.discardItem(itemToEquip);
+          //sets equipped property
+          this.equipped = itemToEquip;
+      }
+    }else{
+      return false;
+    }
+  }
+ this.eat = function(itemToEat){
+  if(itemToEat instanceof Food && this.getPack().indexOf(itemToEat) > -1){
+    this.discardItem(itemToEat);
+    this.health += itemToEat.energy
+    if(this.health <= this.getMaxHealth()){
+
+    }else{
+      this.health = this.getMaxHealth();
+    }
+  }
+ }
+ this.useItem = function(item){
+  if(item instanceof Weapon){
+    this.equip(item);
+  }else{
+    this.eat(item);
+  }
+ }
+
 
 
 /**
