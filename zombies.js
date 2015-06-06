@@ -492,3 +492,18 @@ function runGame() {
   // console.log("After health: " + player.health);
   // player.checkPack();
 }
+
+
+module.exports = {
+  Item : Item,
+  Weapon : Weapon,
+  Food : Food,
+  Player : Player,
+  Zombie : Zombie,
+  FastZombie : FastZombie,
+  StrongZombie : StrongZombie,
+  RangedZombie : RangedZombie,
+  ExplodingZombie : ExplodingZombie
+};
+
+

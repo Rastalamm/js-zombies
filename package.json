@@ -1,0 +1,30 @@
+{
+  "name": "js-zombies",
+  "version": "1.0.0",
+  "description": "Testing js-zombies",
+  "main": "zombies.js",
+  "directories": {
+    "doc": "doc",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rastalamm/js-zombies.git"
+  },
+  "keywords": [
+    "test"
+  ],
+  "author": "Judah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rastalamm/js-zombies/issues"
+  },
+  "homepage": "https://github.com/Rastalamm/js-zombies#readme",
+  "dependencies": {
+    "chai": "^3.0.0",
+    "mocha": "^2.2.5"
+  }
+}
