@@ -140,37 +140,65 @@ describe('Player', function () {
       player.speed.should.be.equal(100);
     });
 
+    // Testing for private variable?
     it('should create a new Player with a property of pack', function(){
-      player.should.have.property('pack');
+      player.should.have.property('_pack');
+    });
+
+    it('should be an array', function(){
+      player._pack.should.be.an('array');
     });
 
     it('should create a new Player with a property of maxHealth', function(){
-      player.should.have.property('maxHealth');
+      player.should.have.property('_maxHealth');
     });
 
     it('should create a new Player with a property of isAlive', function(){
-      player.should.have.property('');
+      player.should.have.property('isAlive');
+    });
+
+    it('isAlive should return a boolean', function () {
+      player.isAlive.should.be.an('boolean');
     });
 
     it('should create a new Player with a property of equipped', function(){
-      player.should.have.property('');
+      player.should.have.property('equipped');
+    });
+    it('equipped should return a boolean', function () {
+      player.equipped.should.be.an('boolean');
     });
 
-
-
-
-
-    it('should create a new Player with a property of getPack', function(){
-      player.should.have.property('');
-    });
-    it('should create a new Player with a property of getMaxHealth', function(){
-      player.should.have.property('');
+    it('getpack should be a function', function(){
+      expect(player.getPack).to.be.a('function');
     });
 
+    it('getpack should return an array', function () {
+      player.getPack().should.be.an('array');
+    });
+
+    it('getMaxHealth should be a function', function(){
+      expect(player.getMaxHealth).to.be.a('function');
+    });
+
+    it('getMaxHealth should return a number', function () {
+      player.getMaxHealth().should.be.a('number');
+    });
+
+    it('checkPack should be a function', function(){
+      expect(player.checkPack).to.be.a('function');
+    });
+
+    it('checkPack should equal true', function () {
+      expect(player.checkPack()).to.be.true;
+    });
+
+// Figure out how to test for individual things inside of a function
+// Pass in value to make it true, pass in values to make it false
+    it('discard item', function (done) {
+      player.takeItem('baton')
 
 
-
-
+    });
 
 
   });
