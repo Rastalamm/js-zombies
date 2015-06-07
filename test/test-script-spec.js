@@ -192,13 +192,144 @@ describe('Player', function () {
       expect(player.checkPack()).to.be.true;
     });
 
-// Figure out how to test for individual things inside of a function
-// Pass in value to make it true, pass in values to make it false
-    it('discard item', function (done) {
-      player.takeItem('baton')
+
+
+    it('takeItem should be a function', function(){
+      expect(player.takeItem).to.be.a('function');
+    });
+
+    it('takeItem should only allow up to three items in the pack', function(){
+      var waffle = new zombies.Item('waffle');
+      var syrup = new zombies.Item('syrup');
+      var coffee = new zombies.Item('coffee');
+      var toast = new zombies.Item('toast');
+
+      var result = player.takeItem(waffle);
+
+      result.should.be.true;
+
+      result = player.takeItem(syrup);
+      result = player.takeItem(coffee);
+      result = player.takeItem(toast);
+      result.should.be.false;
+    });
+
+
+    it('discardItem should be a function', function(){
+      expect(player.discardItem).to.be.a('function');
+    });
+
+    it('discardItem should remove an existing item from the pack ', function(){
+      var waffle = new zombies.Item('waffle');
+      var syrup = new zombies.Item('syrup');
+      var coffee = new zombies.Item('coffee');
+      var toast = new zombies.Item('toast');
+
+      player.takeItem(waffle);
+      player.takeItem(syrup);
+      player.takeItem(coffee);
+
+      var result = player.discardItem(waffle);
+      result.should.be.true;
+      result = player.discardItem(toast);
+      result.should.be.false;
+    });
+
+
+    it('equip should be a function', function(){
+      expect(player.equip).to.be.a('function');
+    });
+    it('equip function should be an Weapon and be in the pack', function(){
+      var waffle = new zombies.Weapon('waffle', 5);
+      var syrup = new zombies.Weapon('syrup', 10);
+      var coffee = new zombies.Weapon('coffee', 15);
+      var toast = new zombies.Weapon('toast', 20);
+      var iceCream = new zombies.Weapon('Ice Cream', 20);
+
+      player.takeItem(waffle);
+      player.takeItem(syrup);
+      player.takeItem(coffee);
+
+      player.equip(waffle);
+
+      player.equipped.should.be.equal(waffle);
+
+      var result = player.equip(iceCream);
+      result.should.be.false;
 
 
     });
+
+
+    it('eat should be a function', function(){
+      expect(player.eat).to.be.a('function');
+    });
+    it('item to eat should be some food', function(){
+      var syrup = new zombies.Food('syrup', 10);
+      var knife = new zombies.Weapon('Knife', 20);
+
+      syrup.should.be.an.instanceof(zombies.Food);
+      knife.should.not.be.an.instanceof(zombies.Food);
+    });
+
+    it('item to eat should be in the pack', function(){
+      var waffle = new zombies.Weapon('waffle', 5);
+      var syrup = new zombies.Weapon('syrup', 10);
+
+      var result = player.takeItem(waffle);
+      result.should.be.true;
+
+
+
+
+
+
+    });
+
+    it('eat function', function(){
+      var waffle = new zombies.Food('waffle', 5);
+      var syrup = new zombies.Food('syrup', 10);
+      var knife = new zombies.Weapon('Knife', 20);
+
+
+
+
+
+
+
+
+
+    });
+
+    it('useItem should be a function', function(){
+      expect(player.useItem).to.be.a('function');
+    });
+
+    it('equippedWith should be a function', function(){
+      expect(player.equippedWith).to.be.a('function');
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Figure out how to test for individual things inside of a function
+// Pass in value to make it true, pass in values to make it false
 
 
   });

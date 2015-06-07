@@ -243,11 +243,11 @@ function Player(name, health, strength, speed){
   }
  this.takeItem = function(item){
   if(this.getPack().length < 3){
-    console.log(this.name, item.name);
+    //console.log(this.name, item.name);
     this.getPack().push(item);
     return true;
   }else{
-    console.log('the pack is full so the item could not be stored');
+   // console.log('the pack is full so the item could not be stored');
     return false;
     }
    }
